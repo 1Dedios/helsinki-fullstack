@@ -3,7 +3,7 @@ Sequence Diagram showing browser and server interactions when a new note is inse
 <br>
 <br>
 
-::: mermaid
+``` mermaid
 
 sequenceDiagram
     browser->>server: GET - https://studies.cs.helsinki.fi/exampleapp/data.json
@@ -11,4 +11,4 @@ sequenceDiagram
     activate server
     server-->>browser: res Type: application/json
     deactivate server
-:::
+```
