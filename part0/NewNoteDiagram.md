@@ -1,10 +1,14 @@
+Sequence Diagram showing browser and server interactions when a new note is inserted into input and "save" button is clicked (Traditional Browser).
 
-
-Example of using the mermaid syntax for markdown
+<br>
+<br>
 
 ::: mermaid
+
 sequenceDiagram
-    Alice->>John: Hello John, how are you?
-    John-->>Alice: Great!
-    Alice->>John: See you later!
+    browser->>server: GET - https://studies.cs.helsinki.fi/exampleapp/data.json
+    Note over browser: User entered text in input field <br> and clicked "save" button.
+    activate server
+    server-->>browser: res Type: application/json
+    deactivate server
 :::
