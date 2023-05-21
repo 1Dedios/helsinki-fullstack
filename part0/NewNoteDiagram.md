@@ -1,5 +1,5 @@
 ---
-title: Browser and Server - onClick "save" button
+Browser and Server - onClick "save" button
 ---
 
 Sequence Diagram showing browser and server interactions when a new note is inserted into input and "save" button is clicked (Traditional Browser).
