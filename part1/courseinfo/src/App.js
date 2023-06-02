@@ -1,27 +1,19 @@
 const Header = ({ name }) => {
-  console.log("hello from header");
   return <h1>{name}</h1>;
 };
 
-const Content = ({
-  part1,
-  part2,
-  part3,
-  exercises1,
-  exercises2,
-  exercises3,
-}) => {
+const Part = ({ name, numberOfExercises }) => (
+  <p>
+    {name} {numberOfExercises}
+  </p>
+);
+
+const Content = ({}) => {
   return (
     <div>
-      <p>
-        {part1} {exercises1}
-      </p>
-      <p>
-        {part2} {exercises2}
-      </p>
-      <p>
-        {part3} {exercises3}
-      </p>
+      <Part />
+      <Part />
+      <Part />
     </div>
   );
 };
