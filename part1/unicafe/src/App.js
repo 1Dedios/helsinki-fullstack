@@ -14,7 +14,9 @@ const Statistics = ({ good, neutral, bad, all, average, positive }) => {
       </p>
       <p>neutral {neutral}</p>
       <p>bad {bad}</p>
-      <p>all {all}</p>
+      <p>
+        all <span id="all">{all}</span>
+      </p>
       <p>average {average}</p>
       <p>positive {positive}</p>
     </div>
@@ -28,6 +30,12 @@ function App() {
   const [all, setAll] = useState(0);
   const [average, setAverage] = useState(0);
   const [positive, setPositive] = useState(0);
+
+  {
+    /* I think the way to go with all, positive and average is adding an event listener. I just don't know how to access it. I can access the element in Statistics component but the setting function for state exists in the App component 🤔 */
+  }
+
+  // document.querySelector("all").addEventListener("click", setAll(all + 1));
 
   return (
     <div>
