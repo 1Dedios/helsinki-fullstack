@@ -35,7 +35,13 @@ function App() {
     /* I think the way to go with all, positive and average is adding an event listener. I just don't know how to access it. I can access the element in Statistics component but the setting function for state exists in the App component 🤔 */
   }
 
-  // document.querySelector("all").addEventListener("click", setAll(all + 1));
+  const allCount = document.getElementById("all");
+
+  allCount.addEventListener("click", setAll(all + 1));
+
+  // setAll(() => {
+  //   all + 1;
+  // });
 
   return (
     <div>
