@@ -42,6 +42,7 @@ function App() {
           setAverage((average += 1));
           // console.log below
           console.log(setAverage);
+          setPositive((positive = (good / allClicks) * 100));
         }}
         text={"good"}
       />
