@@ -18,7 +18,7 @@ const Statistics = ({ good, neutral, bad, allClicks, average, positive }) => {
         all <span>{allClicks.length}</span>
       </p>
       <p>average {average / 3}</p>
-      <p>positive {positive}</p>
+      <p>positive {positive} %</p>
     </div>
   );
 };
@@ -29,7 +29,7 @@ function App() {
   const [bad, setBad] = useState(0);
   const [allClicks, setAllClicks] = useState([]);
   let [average, setAverage] = useState(0);
-  const [positive, setPositive] = useState(0);
+  let [positive, setPositive] = useState(0);
 
   return (
     <div>
@@ -42,7 +42,7 @@ function App() {
           setAverage((average += 1));
           // console.log below
           console.log(setAverage);
-          setPositive((positive = (good / allClicks) * 100));
+          setPositive((positive = (good / allClicks.length) * 100));
         }}
         text={"good"}
       />
