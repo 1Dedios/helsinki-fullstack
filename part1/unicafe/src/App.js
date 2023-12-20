@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState } from 'react';
+
+// Components are created here because it's such a small app.
 
 const Heading = ({ text }) => <h1>{text}</h1>;
 
@@ -6,19 +8,17 @@ const Button = ({ text, handleClick }) => {
   return <button onClick={handleClick}>{text}</button>;
 };
 
+// TODO: implement positive and average states below.
+
 const Statistics = ({ good, neutral, bad, allClicks, average, positive }) => {
   return (
     <div>
-      <p>
-        good <span id="good">{good}</span>
-      </p>
+      <p>good {good}</p>
       <p>neutral {neutral}</p>
       <p>bad {bad}</p>
-      <p>
-        all <span>{allClicks.length}</span>
-      </p>
+      <p>all {allClicks.length}</p>
       <p>average {average / 3}</p>
-      <p>positive {positive} %</p>
+      <p>positive {positive}%</p>
     </div>
   );
 };
@@ -33,39 +33,38 @@ function App() {
 
   return (
     <div>
-      <Heading text={"give feedback"} />
+      <Heading text={'give feedback'} />
 
       <Button
         handleClick={() => {
-          setAllClicks(allClicks.concat("c"));
           setGood(good + 1);
           setAverage((average += 1));
-          // console.log below
+          setAllClicks(allClicks.concat('c'));
           console.log(setAverage);
           setPositive((positive = (good / allClicks.length) * 100));
         }}
-        text={"good"}
+        text={'good'}
       />
 
       <Button
         handleClick={() => {
-          setAllClicks(allClicks.concat("c"));
+          setAllClicks(allClicks.concat('c'));
           setNeutral(neutral + 1);
           setAverage((average += 0));
         }}
-        text={"neutral"}
+        text={'neutral'}
       />
 
       <Button
         handleClick={() => {
-          setAllClicks(allClicks.concat("c"));
+          setAllClicks(allClicks.concat('c'));
           setBad(bad + 1);
           setAverage((average += -1));
         }}
-        text={"bad"}
+        text={'bad'}
       />
 
-      <Heading text={"statistics"} />
+      <Heading text={'statistics'} />
 
       <Statistics
         good={good}
