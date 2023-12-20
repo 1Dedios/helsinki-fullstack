@@ -10,6 +10,9 @@ const Button = ({ text, handleClick }) => {
 
 // TODO: implement positive and average states below.
 
+// CURRENTLY WORKING ON AVERAGE STATE
+// average should only calculate good and bad. Good increases by 1 and bad increases by 1. Neutral is just 0 w/ no effect.
+
 const Statistics = ({ good, neutral, bad, allClicks, average, positive }) => {
   return (
     <div>
@@ -17,7 +20,7 @@ const Statistics = ({ good, neutral, bad, allClicks, average, positive }) => {
       <p>neutral {neutral}</p>
       <p>bad {bad}</p>
       <p>all {allClicks.length}</p>
-      <p>average {average / 3}</p>
+      <p>average {average}</p>
       <p>positive {positive}%</p>
     </div>
   );
@@ -37,8 +40,13 @@ function App() {
 
       <Button
         handleClick={() => {
-          setGood(good + 1);
-          setAverage((average += 1));
+          const prevGood = good;
+          setGood(prevGood + 1);
+
+          setAverage(() => {
+            let total = prevGood + 1 - bad;
+            average = total / setAllClicks;
+          });
           setAllClicks(allClicks.concat('c'));
           console.log(setAverage);
           setPositive((positive = (good / allClicks.length) * 100));
@@ -50,16 +58,19 @@ function App() {
         handleClick={() => {
           setAllClicks(allClicks.concat('c'));
           setNeutral(neutral + 1);
-          setAverage((average += 0));
         }}
         text={'neutral'}
       />
 
       <Button
         handleClick={() => {
+          const prevBad = bad;
           setAllClicks(allClicks.concat('c'));
-          setBad(bad + 1);
-          setAverage((average += -1));
+          setBad(prevBad + 1);
+          setAverage(() => {
+            let total = good + (prevBad - 1);
+            average = total / setAllClicks;
+          });
         }}
         text={'bad'}
       />
