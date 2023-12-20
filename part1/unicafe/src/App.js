@@ -1,14 +1,12 @@
 import { useState } from 'react';
 
-// Components are created here because it's such a small app.
+// COMPONENTS ARE BEING CREATED HERE BECAUSE IT'S A SMALL APP
 
 const Heading = ({ text }) => <h1>{text}</h1>;
 
 const Button = ({ text, handleClick }) => {
   return <button onClick={handleClick}>{text}</button>;
 };
-
-// TODO: implement positive state below.
 
 const Statistics = ({ good, neutral, bad, allClicks, average, positive }) => {
   return (
@@ -20,7 +18,7 @@ const Statistics = ({ good, neutral, bad, allClicks, average, positive }) => {
       <p>
         average {average.reduce((acc, val) => acc + val, 0) / allClicks.length}
       </p>
-      <p>positive {positive}%</p>
+      <p>positive {(positive / allClicks.length) * 100}%</p>
     </div>
   );
 };
@@ -40,10 +38,11 @@ function App() {
       <Button
         handleClick={() => {
           let prevGood = good;
+          let prevPositivePercentage = positive;
           setGood(prevGood + 1);
           setAllClicks(allClicks.concat('G'));
           setAverage(average.concat(1));
-          setPositive((positive = (good / allClicks.length) * 100));
+          setPositive(prevPositivePercentage + 1);
         }}
         text={'good'}
       />
