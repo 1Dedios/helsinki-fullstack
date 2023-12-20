@@ -8,6 +8,14 @@ const Button = ({ text, handleClick }) => {
   return <button onClick={handleClick}>{text}</button>;
 };
 
+const StatisticLine = ({ text, val }) => {
+  return (
+    <p>
+      {text} {val}
+    </p>
+  );
+};
+
 const Statistics = ({ good, neutral, bad, allClicks, average, positive }) => {
   if (allClicks.length === 0) {
     return 'No feedback given.';
@@ -15,14 +23,18 @@ const Statistics = ({ good, neutral, bad, allClicks, average, positive }) => {
 
   return (
     <div>
-      <p>good {good}</p>
-      <p>neutral {neutral}</p>
-      <p>bad {bad}</p>
-      <p>all {allClicks.length}</p>
-      <p>
-        average {average.reduce((acc, val) => acc + val, 0) / allClicks.length}
-      </p>
-      <p>positive {(positive / allClicks.length) * 100}%</p>
+      <StatisticLine text={'Good: '} val={good} />
+      <StatisticLine text={'Neutral: '} val={neutral} />
+      <StatisticLine text={'Bad: '} val={bad} />
+      <StatisticLine text={'Total Clicks: '} val={allClicks.length} />
+      <StatisticLine
+        text={'Average: '}
+        val={average.reduce((acc, val) => acc + val, 0) / allClicks.length}
+      />
+      <StatisticLine
+        text={'Positive %: '}
+        val={(positive / allClicks.length) * 100}
+      />
     </div>
   );
 };
