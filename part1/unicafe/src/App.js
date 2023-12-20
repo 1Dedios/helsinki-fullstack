@@ -8,10 +8,7 @@ const Button = ({ text, handleClick }) => {
   return <button onClick={handleClick}>{text}</button>;
 };
 
-// TODO: implement positive and average states below.
-
-// CURRENTLY WORKING ON AVERAGE STATE
-// average should only calculate good and bad. Good increases by 1 and bad increases by 1. Neutral is just 0 w/ no effect.
+// TODO: implement positive state below.
 
 const Statistics = ({ good, neutral, bad, allClicks, average, positive }) => {
   return (
@@ -20,7 +17,9 @@ const Statistics = ({ good, neutral, bad, allClicks, average, positive }) => {
       <p>neutral {neutral}</p>
       <p>bad {bad}</p>
       <p>all {allClicks.length}</p>
-      <p>average {average}</p>
+      <p>
+        average {average.reduce((acc, val) => acc + val, 0) / allClicks.length}
+      </p>
       <p>positive {positive}%</p>
     </div>
   );
@@ -31,7 +30,7 @@ function App() {
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
   const [allClicks, setAllClicks] = useState([]);
-  let [average, setAverage] = useState(0);
+  let [average, setAverage] = useState([]);
   let [positive, setPositive] = useState(0);
 
   return (
@@ -40,15 +39,10 @@ function App() {
 
       <Button
         handleClick={() => {
-          const prevGood = good;
+          let prevGood = good;
           setGood(prevGood + 1);
-
-          setAverage(() => {
-            let total = prevGood + 1 - bad;
-            average = total / setAllClicks;
-          });
-          setAllClicks(allClicks.concat('c'));
-          console.log(setAverage);
+          setAllClicks(allClicks.concat('G'));
+          setAverage(average.concat(1));
           setPositive((positive = (good / allClicks.length) * 100));
         }}
         text={'good'}
@@ -56,21 +50,19 @@ function App() {
 
       <Button
         handleClick={() => {
-          setAllClicks(allClicks.concat('c'));
-          setNeutral(neutral + 1);
+          let prevNeutral = neutral;
+          setNeutral(prevNeutral + 1);
+          setAllClicks(allClicks.concat('N'));
         }}
         text={'neutral'}
       />
 
       <Button
         handleClick={() => {
-          const prevBad = bad;
-          setAllClicks(allClicks.concat('c'));
+          let prevBad = bad;
           setBad(prevBad + 1);
-          setAverage(() => {
-            let total = good + (prevBad - 1);
-            average = total / setAllClicks;
-          });
+          setAllClicks(allClicks.concat('B'));
+          setAverage(average.concat(-1));
         }}
         text={'bad'}
       />
