@@ -95,12 +95,45 @@ function App() {
   let [average, setAverage] = useState([]);
   let [positive, setPositive] = useState(0);
 
-  const anecdotes = {
-    'Brooks Law':
-      '"Adding manpower to a late software project makes it later!"',
-  };
+  const anecdotes = [
+    {
+      'Brooks Law':
+        '"Adding manpower to a late software project makes it later!"',
+    },
+    {
+      'Fred Brooks':
+        '"How does a project get to be a year late?... One day at a time."',
+    },
+    {
+      'Martin Fowler':
+        '"Any fool can write code that a computer can understand. Good programmers write code that humans can understand."',
+    },
+    {
+      Anonymous:
+        '"The goal of Computer Science is to build something that will last at least until we\'ve finished building it."',
+    },
+    {
+      'Frederick P. Brooks':
+        '"Good judgment comes from experience, and experience comes from bad judgment."',
+    },
+    {
+      'Austin Freeman': '"Simplicity is the soul of efficiency."',
+    },
+    {
+      'Bill Langely':
+        '"The perfect project plan is possible if one first documents a list of all the unknowns."',
+    },
+    {
+      'Niklaus Wirth':
+        '"Wirth\'s Law - Software gets slower faster than hardware gets faster."',
+    },
+    {
+      Anonymous:
+        '"Better train people and risk they leave - than do nothing and risk they stay."',
+    },
+  ];
 
-  console.log(anecdotes['Brooks Law']);
+  console.log(Object.keys(anecdotes[3]));
   return (
     <div>
       <Heading text={'give feedback'} />
@@ -146,6 +179,8 @@ function App() {
         average={average}
         positive={positive}
       />
+
+      {/* TODO: BUILD BUTTON THAT GENERATES RANDOM QUOTES FROM THE ANECDOTES ARRAY OF OBJECTS UP TOP. */}
     </div>
   );
 }
