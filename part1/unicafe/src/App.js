@@ -23,62 +23,66 @@ const Statistics = ({ good, neutral, bad, allClicks, average, positive }) => {
 
   return (
     <table>
-      <tr>
-        <td>
-          <StatisticLine text={'Good'} />
-        </td>
-        <br />
-        <td>
-          <StatisticLine text={good} />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <StatisticLine text={'Neutral'} />
-        </td>
-        <br />
-        <td>
-          <StatisticLine text={neutral} />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <StatisticLine text={'Bad'} />
-        </td>
-        <br />
-        <td>
-          <StatisticLine text={bad} />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <StatisticLine text={'All'} />
-        </td>
-        <br />
-        <td>
-          <StatisticLine text={allClicks.length} />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <StatisticLine text={'Average'} />
-        </td>
-        <br />
-        <td>
-          <StatisticLine
-            text={average.reduce((acc, val) => acc + val, 0) / allClicks.length}
-          />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <StatisticLine text={'Positive'} />
-        </td>
-        <br />
-        <td>
-          <StatisticLine text={(positive / allClicks.length) * 100 + '%'} />
-        </td>
-      </tr>
+      <tbody>
+        <tr>
+          <td>
+            <StatisticLine text={'Good'} />
+          </td>
+          <br />
+          <td>
+            <StatisticLine text={good} />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <StatisticLine text={'Neutral'} />
+          </td>
+          <br />
+          <td>
+            <StatisticLine text={neutral} />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <StatisticLine text={'Bad'} />
+          </td>
+          <br />
+          <td>
+            <StatisticLine text={bad} />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <StatisticLine text={'All'} />
+          </td>
+          <br />
+          <td>
+            <StatisticLine text={allClicks.length} />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <StatisticLine text={'Average'} />
+          </td>
+          <br />
+          <td>
+            <StatisticLine
+              text={
+                average.reduce((acc, val) => acc + val, 0) / allClicks.length
+              }
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <StatisticLine text={'Positive'} />
+          </td>
+          <br />
+          <td>
+            <StatisticLine text={(positive / allClicks.length) * 100 + '%'} />
+          </td>
+        </tr>
+      </tbody>
     </table>
   );
 };
@@ -91,6 +95,12 @@ function App() {
   let [average, setAverage] = useState([]);
   let [positive, setPositive] = useState(0);
 
+  const anecdotes = {
+    'Brooks Law':
+      '"Adding manpower to a late software project makes it later!"',
+  };
+
+  console.log(anecdotes['Brooks Law']);
   return (
     <div>
       <Heading text={'give feedback'} />
