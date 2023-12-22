@@ -92,6 +92,7 @@ const Statistics = ({ good, neutral, bad, allClicks, average, positive }) => {
 };
 
 const AnecdoteQuotes = ({ quote, author, votes }) => {
+  // TODO: when the component receives the votes it should map the vote to its respective quote.
   return (
     <div>
       <Heading text={'quotes'} />
@@ -110,7 +111,9 @@ function App() {
   let [average, setAverage] = useState([]);
   let [positive, setPositive] = useState(0);
   let [selected, setSelected] = useState(0);
-  let [votes, setVotes] = useState(0);
+  let [votes, setVotes] = useState([new Array(9)]);
+  console.log(selected);
+  console.log(votes);
 
   const anecdotes = [
     {
@@ -194,11 +197,13 @@ function App() {
       <AnecdoteQuotes
         quote={Object.values(anecdotes[selected])}
         author={Object.keys(anecdotes[selected])}
-        votes={votes}
+        votes={votes[selected]}
       />
       <Button
         handleClick={() => {
-          setVotes(votes + 1);
+          setVotes(
+            votes.splice(selected, 0, (votes[selected] += ++votes[selected]))
+          );
         }}
         text={'Vote For Quote'}
         style={{ topPadding: '10px' }}
