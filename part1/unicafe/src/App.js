@@ -4,8 +4,12 @@ import { useState } from 'react';
 
 const Heading = ({ text }) => <h1>{text}</h1>;
 
-const Button = ({ text, handleClick }) => {
-  return <button onClick={handleClick}>{text}</button>;
+const Button = ({ text, handleClick, style }) => {
+  return (
+    <button style={style} onClick={handleClick}>
+      {text}
+    </button>
+  );
 };
 
 const StatisticLine = ({ text }) => {
@@ -87,6 +91,16 @@ const Statistics = ({ good, neutral, bad, allClicks, average, positive }) => {
   );
 };
 
+const AnecdoteQuotes = ({ quote, author }) => {
+  return (
+    <div>
+      <Heading text={'quotes'} />
+      <p>{quote}</p>
+      <p>-- {author}</p>
+    </div>
+  );
+};
+
 function App() {
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
@@ -94,6 +108,7 @@ function App() {
   const [allClicks, setAllClicks] = useState([]);
   let [average, setAverage] = useState([]);
   let [positive, setPositive] = useState(0);
+  let [selected, setSelected] = useState(0);
 
   const anecdotes = [
     {
@@ -133,11 +148,9 @@ function App() {
     },
   ];
 
-  console.log(Object.keys(anecdotes[3]));
   return (
     <div>
       <Heading text={'give feedback'} />
-
       <Button
         handleClick={() => {
           let prevGood = good;
@@ -149,7 +162,6 @@ function App() {
         }}
         text={'good'}
       />
-
       <Button
         handleClick={() => {
           let prevNeutral = neutral;
@@ -158,7 +170,6 @@ function App() {
         }}
         text={'neutral'}
       />
-
       <Button
         handleClick={() => {
           let prevBad = bad;
@@ -168,9 +179,7 @@ function App() {
         }}
         text={'bad'}
       />
-
       <Heading text={'statistics'} />
-
       <Statistics
         good={good}
         neutral={neutral}
@@ -179,8 +188,18 @@ function App() {
         average={average}
         positive={positive}
       />
-
-      {/* TODO: BUILD BUTTON THAT GENERATES RANDOM QUOTES FROM THE ANECDOTES ARRAY OF OBJECTS UP TOP. */}
+      <br />
+      <AnecdoteQuotes
+        quote={Object.values(anecdotes[selected])}
+        author={Object.keys(anecdotes[selected])}
+      />
+      <Button
+        handleClick={() => {
+          setSelected((selected = Math.floor(Math.random() * 9)));
+        }}
+        text={'Generate a Quote'}
+        style={{ topPadding: '10px' }}
+      />
     </div>
   );
 }
