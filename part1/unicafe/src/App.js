@@ -91,12 +91,13 @@ const Statistics = ({ good, neutral, bad, allClicks, average, positive }) => {
   );
 };
 
-const AnecdoteQuotes = ({ quote, author }) => {
+const AnecdoteQuotes = ({ quote, author, votes }) => {
   return (
     <div>
       <Heading text={'quotes'} />
       <p>{quote}</p>
       <p>-- {author}</p>
+      <p>This quote has {votes} votes.</p>
     </div>
   );
 };
@@ -109,6 +110,7 @@ function App() {
   let [average, setAverage] = useState([]);
   let [positive, setPositive] = useState(0);
   let [selected, setSelected] = useState(0);
+  let [votes, setVotes] = useState(0);
 
   const anecdotes = [
     {
@@ -192,6 +194,14 @@ function App() {
       <AnecdoteQuotes
         quote={Object.values(anecdotes[selected])}
         author={Object.keys(anecdotes[selected])}
+        votes={votes}
+      />
+      <Button
+        handleClick={() => {
+          setVotes(votes + 1);
+        }}
+        text={'Vote For Quote'}
+        style={{ topPadding: '10px' }}
       />
       <Button
         handleClick={() => {
