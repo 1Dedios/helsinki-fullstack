@@ -111,9 +111,14 @@ function App() {
   let [average, setAverage] = useState([]);
   let [positive, setPositive] = useState(0);
   let [selected, setSelected] = useState(0);
-  let [votes, setVotes] = useState([new Array(9)]);
-  console.log(selected);
-  console.log(votes);
+  let [votes, setVotes] = useState(Array(9).fill(0, 0, 9));
+
+  //let copyOfVotes = [...votes];
+  //votes.fill(0, 0, 9);
+  console.log('Index votes should map to', selected);
+
+  //console.log('COPY OF VOTES', copyOfVotes);
+  console.log('VOTES', [...votes]);
 
   const anecdotes = [
     {
@@ -201,9 +206,7 @@ function App() {
       />
       <Button
         handleClick={() => {
-          setVotes(
-            votes.splice(selected, 0, (votes[selected] += ++votes[selected]))
-          );
+          setVotes(votes[selected] + 1);
         }}
         text={'Vote For Quote'}
         style={{ topPadding: '10px' }}
